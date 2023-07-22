@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF=8"/>
+    <title></title>
+
+    <!--top css-->
+    <style>
+        main {
+          display:flex;
+          width: 100%;
+        }
+          .main-area {
+            width: 78%;
+          }
+        .top-header h1 {
+          color: black;
+          text-align:center;
+          background-color:white;
+        }
+
+        .hr1{
+        width:60%;
+        }
+            .text_area {
+              height:100%%
+            }
+
+          .sidebar{
+            width:20%;%
+          }
+            .new-area {
+              margin:20px;
+              background-color: white;
+            }
+              .new-item {
+                background-color:white;
+                margin: 25px;
+              }
+          .new-button > .button {
+            background-color:blue;
+          }
+
+    </style>
+  </head>
+
+  <body>
+    <main>
+      <!-- main-area -->
+      <div class="main-area">
+
+        <!--blog-->
+        <div class="new-area">
+
+          <div class="top-header">
+            <h1>問い合わせ</h1>
+          </div>
+
+          <hr class="hr1">
+
+          <div class="new">
+            <%= form_with model: @inquiry, url: admin_inquiries_path, local: true do |form| %>
+              
+              <!-- message -->
+              <% if inquiry.errors.any? %>
+                <div style="color: red">
+                  <h2><%= pluralize(inquiry.errors.count, "error") %> prohibited this inquiry from being saved:</h2>
+
+                  <ul>
+                    <% inquiry.errors.each do |error| %>
+                      <li><%= error.full_message %></li>
+                    <% end %>
+                  </ul>
+                </div>
+              <% end %>
+
+              <label class="new-item">
+                <div>お名前 </div>
+                <%= form.text_field :name %>
+              </label>
+
+              <label class="new-item">
+                <div>ご連絡先（メールアドレスor電話番号）</div>
+                <%= form.text_field :number %>
+              </label>
+
+              <label class="new-item">
+                <div>お問い合わせ内容</div>
+                <%= form.rich_text_area :content %>
+              </label>
+
+              <div class="new-button">
+                <%= form.submit do %>
+
+                  <div class="button">
+                  </div>
+                <% end %>
+              </div>
+            <% end %>
+
+          </div>
+        </div>
+
+
+      </div>
+
+      <hr class="hr2">
+
+      <!--sidebar-->
+      <div class="sidebar">
+        <div>広告</div>
+      </div>
+
+    </main>
+  </body>
+</html>
+
+
+
+
+
+

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF=8"/>
+    <title></title>
+
+    <!--top css-->
+    <style>
+      /*カーソルを当てた時*/
+      .genre-items:hover, .blog:hover{
+        background-color:#EDF2F7;
+        font-size: 20px;
+        font-weight: bold;
+      }
+      .top-header h1 {
+        color: black;
+        text-align:center;
+        background-color:white;
+      }
+
+      .hr1{
+        color: black;
+        text-align:center;
+        background-color:white;
+      }
+
+        main {
+          display:flex;
+          width: 100%;
+        }
+          .main-area {
+            width: 78%;
+            background-color:white;
+            margin: 10px;
+            display: flex;
+          }
+            .main-area1{
+              width:35%;
+              height:100%;
+            }
+              .genre-area{
+                margin:90px;
+              }
+                .genre {
+                  /*角を丸くする*/
+                  border-radius:10px;
+                  width: 315px;
+                }
+                  .genre-head{
+                    border: 1px solid #cccccc;
+                    padding: 10px;
+                    background-color:#2692AC;
+                    text-align: center;
+                  }
+                  .genre-items{
+                    height:60px;
+                    border: 1px solid #cccccc;
+                    padding: 10px;
+                  }
+            .main-area2{
+              width:70%;
+              height:100%;
+            }
+              .blog-area {
+                margin:65px;
+                display: flex;
+                flex-wrap: wrap;
+              }
+                .blog{
+                  border: solid;
+                  border-color: black;
+                  /*角を丸くする*/
+                  border-radius:10px;
+                  height: 263px;
+                  width: 500px;
+                  margin: 15px;
+                  background-color:white;
+                }
+                  a {
+                    text-decoration: none;
+                    color:black;
+                  }
+
+                  .blog-head{
+                    width: 100%;
+                    height:45%;
+                    position:  relative;
+                  }
+                    .blog-time{
+                      position:  absolute;
+                      top: 5px;
+                      left: 13px;
+                    }
+                    .blog-title{
+                      position:  absolute;
+                      top: 17px;
+                      left: 5px;
+                    }
+                    .blog-genre{
+                      position:  absolute;
+                      right: 27px;
+                      top: 25px;
+                    }
+                    .blog-user{
+                      position:  absolute;
+                      bottom: 1px;
+                      right: 14px;
+                    }
+                  .blog-content {
+                    height:45%;
+                    overflow: hidden;
+                  }
+          .sidebar{
+            width:20%;
+          }
+    </style>
+  </head>
+
+  <body>
+    <main>
+      <!-- main-area -->
+      <div class="main-area">
+
+        <!--ジャンルエリア-->
+        <div class="main-area1">
+
+          <div class="genre-area">
+            <div class="genre">
+              <div class="genre-head">
+                <h3>ジャンル一覧</h3>
+              </div>
+
+              <% @genres.each do |genre| %>
+                <%= link_to admin_genre_path(genre.id) do %>
+                  <div class="genre-items">
+                    <%= genre.name %>
+                  </div>
+                <% end %>
+              <% end %>
+
+            </div>
+          </div>
+
+        </div>
+
+        <div class="main-area2">
+          <!--blog-->
+          <div class="top-header">
+            <h1><%= @genre.name%> 一覧</h1>
+          </div>
+
+          <hr class="hr1">
+
+          <% @blogs.each do |blog| %>
+
+            <div class="blog-area">
+              <div class="blog">
+                <%= link_to admin_blog_path(blog.id) do %>
+                  <div class="blog-head">
+
+                    <!--タイトル-->
+                    <div class="blog-title">
+                      <h1><%= blog.title %></h1>
+                    </div>
+
+                    <!--投稿日-->
+                    <div class="blog-time">
+                      <strong>投稿日:</strong><%= blog.created_at.strftime('%Y/%m/%d') %>
+                    </div>
+
+                    <!--ジャンル-->
+                    <div class="blog-genre">
+                      <% if blog.genre.present? %>
+                        <strong>ジャンル: </strong><%= blog.genre.name %>
+                      <% end %>
+                    </div>
+
+                    <!-- 投稿者 -->
+                    <div class="blog-user">
+                      <% if blog&.user&.mark %>
+                        <strong>✅管理者:</strong><%= blog.user.name %>
+                      <% else %>
+                        <strong>投稿者: </strong><%= blog.user.name %>
+                      <% end %>
+                    </div>
+
+                  </div>
+
+                  <hr class="hr1">
+
+                  <!--コンテンツ-->
+                  <div class="blog-content">
+                    <%= blog.content %>
+                  </div>
+
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+
+      </div>
+
+      <hr class="hr2">
+
+      <!--sidebar-->
+      <div class="sidebar">
+        広告
+      </div>
+
+    </main>
+  </body>
+</html>
+

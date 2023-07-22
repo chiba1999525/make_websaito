@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF=8"/>
+    <title></title>
+
+    <!--top css-->
+    <style>
+      .top-header h1 {
+        color: black;
+        text-align:center;
+        background-color:white;
+      }
+
+      .hr1{
+        width:60%;
+      }
+
+        main {
+          display:flex;
+          width: 100%;
+        }
+          .main-area {
+            width: 78%;
+          }
+            .text_area {
+              height:500px;
+            }
+
+            .new-area {
+              margin:20px;
+              background-color: white;
+              text-align:center
+            }
+              input{
+                width: 325px;
+                height: 50px
+              }
+              .new-item, .link, .new-button {
+                background-color:white;
+                margin: 25px 10px 0px 20px;;
+              }
+
+          .sidebar{
+            width:20%;
+          }
+            .sidebar-area{
+              margin:20px;
+              background-color:white;
+            }
+
+    </style>
+  </head>
+
+  <body>
+    <main>
+      <!-- main-area -->
+      <div class="main-area">
+        <!--blog-->
+        <div class="new-area">
+
+
+          <div class="top-header">
+            <h1>マイページ 登録</h1>
+          </div>
+
+          <hr class="hr1">
+
+          <div class="item-area">
+            <%= form_with model: @user,  url: user_customer_path, local: true do |f| %>
+              <%= render "devise/shared/error_messages", resource: resource %>
+
+              <div class="new-item">
+                <label>
+                  <div>ニックネーム</div>
+                  <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
+                </label>
+              </div>
+
+              <div class="new-item">
+                <label>
+                  <div>メールアドレス</div>
+                  <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+                </label>
+              </div>
+
+              <div class="new-item">
+                <label>
+                  <div>イメージ画像</div>
+                  <%= f.image_field :password, autocomplete: "new-password" %>
+                </label>
+              </div>
+
+              <div class="new-item">
+                <label>
+                  <div>自己紹介</div>
+                  <%= f.text_area :body %>
+                </label>
+              </div>
+
+              <div class="new-button">
+                <%= f.submit "登録" %>
+              </div>
+
+            <% end %>
+            <div class="link">
+              登録済みの方は<%= link_to "こちら", new_user_session_path %> へ
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <hr class="hr2">
+      <!--sidebar-->
+      <div class="sidebar">
+        <div class="sidebar-area">
+
+          <div class="item">
+          </div>
+
+        </div>
+      </div>
+
+    </main>
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
+

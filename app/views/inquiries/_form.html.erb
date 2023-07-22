@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF=8"/>
+    <title></title>
+
+    <!--top css-->
+    <style>
+      .top-header h1 {
+        color: black;
+        text-align:center;
+        background-color:white;
+      }
+
+      .hr1{
+        width:60%;
+      }
+
+        main {
+          display:flex;
+          width: 100%;
+          background-color:white;
+        }
+          .new {
+            width: 78%;
+            height:100%;
+            margin:31px 292px 0px 341px;
+            background-color: white;
+          }
+
+            .new-area {
+            width:100%;
+            }
+              .blog {
+                margin:20px;
+                height:100%;
+                border: solid;
+                border-color: black;
+                /*角を丸くする*/
+                border-radius:10px;
+              }
+              .blog-item {
+                background-color:white;
+                margin: 25px;
+              }
+          .nwe-button {
+            margin: 20px 20px;
+          }
+
+          .sidebar{
+            width:20%;
+          }
+            .sidebar-area{
+              margin:20px;
+              background-color:white;
+            }
+
+            /*入力フォーム*/
+            input{
+              margin: 5px 6px;
+              width: 92%;
+              height: 50px;
+            }
+            @media screen and (max-width: 599px) {
+          .sidebar2 {
+              width: 23%;
+              height: 575px;
+              position: fixed;
+              top: 77px;
+              right: 3%;
+          }
+          .new {
+              margin: 0px;
+              background-color: white;
+              width: 75%;
+          }
+          .new-area {
+              margin: 15px;
+              width: 89%;
+              height: 89%;
+          }
+          .blog {
+              margin: -1px;
+              height: 100%;
+              border: solid;
+              border-color: black;
+              border-radius: 10px;
+          }
+        }
+
+    </style>
+  </head>
+
+  <body>
+    <main>
+      <div class="sidebar1">
+        <div class="sidebar-area">
+        </div>
+      </div>
+
+      <!-- main-area -->
+      <div class="new">
+        <!--blog-->
+        <div class="new-area">
+          <div class="top-header">
+            <h1>問い合わせ</h1>
+          </div>
+
+          <hr class="hr1">
+
+          <%= form_with model: @inquiry, url: inquiries_path, local: true do |form| %>
+
+            <!-- message -->
+            <% if inquiry.errors.any? %>
+              <div style="color: red">
+                <h2><%= pluralize(inquiry.errors.count, "error") %> prohibited this inquiry from being saved:</h2>
+
+                <ul>
+                  <% inquiry.errors.each do |error| %>
+                    <li><%= error.full_message %></li>
+                  <% end %>
+                </ul>
+              </div>
+            <% end %>
+
+            <div class="blog-area">
+              <div class="blog">
+                <label class="blog-item">
+                  <div>お名前 </div>
+                  <%= form.text_field :name %>
+                </label>
+
+                <label class="new-item">
+                  <div>ご連絡先（メールアドレスor電話番号）</div>
+                  <%= form.text_field :number %>
+                </label>
+
+                <label class="new-item">
+                  <div>お問い合わせ内容</div>
+                  <%= form.rich_text_area :content %>
+                </label>
+              </div>
+
+              <div class="new-button">
+                <%= form.submit "送信" %>
+              </div>
+            </div>
+
+          <% end %>
+        </div>
+
+      </div>
+
+      <!--sidebar-->
+      <div class="sidebar2">
+        <div class="sidebar-area">
+        </div>
+      </div>
+
+    </main>
+  </body>
+</html>
+
+
+
+
+
+
+
+

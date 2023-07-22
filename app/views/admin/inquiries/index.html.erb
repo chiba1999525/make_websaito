@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF=8"/>
+    <title></title>
+
+    <!--top css-->
+    <style>
+      .top-header h1 {
+        color: black;
+        text-align:center;
+        background-color:white;
+      }
+
+      .hr1{
+        color: black;
+        text-align:center;
+        background-color:white;
+      }
+
+        main {
+          display:flex;
+          background-color: white;
+          width: 100%;
+        }
+          .main-area {
+            width: 78%;
+          }
+          .inquiry-area {
+           text-align: center;
+          }
+          table {
+            margin:20px;
+          }
+          th, td {
+            border: solid;
+            border-color: black;
+          }
+            .sidebar{
+              width:20%;%
+            }
+
+    </style>
+  </head>
+
+  <body>
+    <main>
+      <!-- main-area -->
+      <div class="main-area">
+
+        <!--inquiry-->
+        <div class="inquiry-area">
+
+          <div class="top-header">
+            <h1>問い合わせ 一覧(全<%= @inquirys.count %>件)</h1>
+          </div>
+
+          <hr class="hr1">
+
+          <!-- inpuires-->
+          <div class="table-area">
+            <% @inquirys.each do |inquiry| %>
+              <table class="table">
+                <tr>
+                  <th>投稿日</th>
+                  <td><%= inquiry.created_at.strftime('%Y/%m/%d') %></td>
+                </tr>
+                <tr>
+                <tr>
+                  <th>名前</th>
+                  <td><%= inquiry.name %></td>
+                </tr>
+                <tr>
+                  <th>連絡先</th>
+                  <td><%= inquiry.number %></td>
+                </tr> <tr>
+                  <th>問い合わせ内容</th>
+                  <td><%= inquiry.content %></td>
+                </tr>
+                </tr> <tr>
+                  <th></th>
+                  <td><%= button_to "削除", admin_inquiry_path(inquiry.id), method: :delete %></td>
+                </tr>
+              </table>
+            <% end %>
+          </div>
+        </div>
+
+      </div>
+
+     <hr class="hr2">
+
+      <!--sidebar-->
+      <div class="sidebar">
+        広告
+      </div>
+
+    </main>
+  </body>
+</html>
+

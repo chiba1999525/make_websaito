@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF=8"/>
+    <title></title>
+
+    <!--top css-->
+    <style>
+      .top-header h1 {
+        color: black;
+        text-align:center;
+        background-color:white;
+      }
+
+      .hr1{
+        width:60%;
+      }
+
+        main {
+          display:flex;
+          width: 100%;
+          background-color:white;
+        }
+          .new {
+            margin: 30px 230px 0px 347px;
+            background-color: white;
+            width:61%;
+          }
+            .text_area {
+              height:500px;
+            }
+
+            .new-area {
+              width: 78%;
+              margin:20px;
+              background-color: white;
+              text-align:center
+            }
+              input{
+                width: 325px;
+                height: 50px
+              }
+              .new-item, .link, .new-button {
+                background-color:white;
+                margin: 25px 10px 0px 20px;;
+              }
+
+          .sidebar{
+            width:20%;
+          }
+            .sidebar-area{
+              margin:20px;
+              background-color:white;
+            }
+            @media (max-width: 599px){
+              .new {
+                  /* margin: 30px 230px 0px 347px; */
+                  background-color: white;
+                  width: 75%;
+                  margin:0px;
+                }
+                .new-area {
+                    width: 100%;
+                    margin: 0px;
+                    background-color: white;
+                    text-align: center;
+                }
+                input {
+                    width: 95%;
+                    height: 50px;
+                }
+            }
+
+    </style>
+  </head>
+
+  <body>
+    <main>
+
+      <div class="sidebar1">
+        <div class="sidebar-area">
+        </div>
+      </div>
+
+      <!-- main-area -->
+      <div class="new">
+        <!--blog-->
+        <div class="new-area">
+
+          <div class="top-header">
+            <h1>ユーザー ログイン</h1>
+          </div>
+
+          <hr class="hr1">
+
+          <div class="item-area">
+            <%= form_with model: @user, url: user_session_path, local: true do |f| %>
+              <%= render "devise/shared/error_messages", resource: resource %>
+
+              <div class="new-item">
+                <label>
+                  <div>メールアドレス</div>
+                  <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+                </label>
+              </div>
+
+              <div class="new-item">
+                <label>
+                  <div>パスワード</div>
+                  <%= f.password_field :password, autocomplete: "new-password" %>
+                </label>
+              </div>
+
+              <div class="new-button">
+                <%= f.submit "ログイン" %>
+              </div>
+
+            <% end %>
+            <div class="link">
+              会員登録済みでない方は<strong><%= link_to "こちら", new_user_registration_path %></strong> へ
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+      <!--sidebar-->
+      <div class="sidebar2">
+        <div class="sidebar-area">
+
+        </div>
+      </div>
+
+    </main>
+  </body>
+</html>

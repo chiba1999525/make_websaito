@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF=8"/>
+    <title></title>
+
+    <!--top css-->
+    <style>
+      /*カーソルを当てた時*/
+      .genre-items:hover{
+        background-color:#EDF2F7;
+        font-size: 20px;
+        font-weight: bold;
+      }
+      .blog:hover{
+        background-color:#EDF2F7;
+      }
+      .top-header h1 {
+        color: black;
+        text-align:center;
+        width:80%;
+      }
+
+      .hr1{
+        color: black;
+        text-align:center;
+        background-color:white;
+        width:70%;
+      }
+        .new-area{
+          margin: 13px 254px 0px 300px;
+            background-color: white;
+            width:61%;
+            display: flex;
+        }
+
+            .main-area1{
+              width:35%;
+              height:100%;
+            }
+              .genre-area{
+                margin:130px 0px 0px 38px;
+              }
+                .genre {
+                  /*角を丸くする*/
+                  border-radius:10px;
+                  width: 315px;
+                }
+                  .genre-head{
+                    border: 1px solid #cccccc;
+                    padding: 10px;
+                    background-color:#2692AC;
+                    text-align: center;
+                  }
+                  .genre-items{
+                    height:60px;
+                    border: 1px solid #cccccc;
+                    padding: 10px;
+                  }
+            .main-area2{
+              width:70%;
+              height:100%;
+            }
+              .blog-area {
+                margin:65px;
+                display: flex;
+                flex-wrap: wrap;
+              }
+                .blog{
+                  border: solid;
+                  border-color: black;
+                  /*角を丸くする*/
+                  border-radius:10px;
+                  height: 263px;
+                  width: 500px;
+                  margin: 15px;
+                  background-color:white;
+                }
+                  a {
+                    text-decoration: none;
+                    color:black;
+                  }
+
+                  .blog-head{
+                    width: 100%;
+                    height:45%;
+                    position:  relative;
+                  }
+                    .blog-pv {
+                      position:absolute;
+                      bottom: -5px;
+                      left: 10px;
+                    }
+                    .blog-time{
+                      position:  absolute;
+                      top: 5px;
+                      left: 13px;
+                    }
+                    .blog-title{
+                      position:  absolute;
+                      top: 35px;
+                      left: 29px;
+                    }
+                    .blog-genre{
+                      position:  absolute;
+                      right: 20px;
+                      top: 9px;
+                    }
+                    .blog-user{
+                      position:  absolute;
+                      bottom: 1px;
+                      right: 14px;
+                    }
+                  .blog-content {
+                    height:45%;
+                    overflow: hidden;
+                  }
+
+                    @media (max-width: 599px){
+                    .new-area{
+                      margin: 13px 0px 0px 0px;
+                      background-color: white;
+                      width: 75%;
+                      display: flex;
+                    }
+                    .main-area1{
+                      width:10%;
+                    }
+                      .genre-area{
+                        display:none;
+                      }
+                    .main-area2{
+                      width:90%;
+                    }
+                      .blog-area {
+                          margin: 0px;
+                          display: flex;
+                          flex-wrap: wrap;
+                      }
+
+                      .blog-content {
+                          height: 23%;
+                          overflow: hidden;
+                      }
+
+                      .blog-head > .blog-title {
+                        width: 94%;
+                        height: 87px;
+                        overflow: hidden;
+                        top: 25%;
+                        left: 8px;
+                        }
+                          .blog-head{
+                          width: 100%;
+                          height: 70%;
+                          position: relative;
+                          }
+                          .blog-genre{
+                            position:  absolute;
+                            left: 13px;
+                            top: 28px;
+                          }
+                          .blog-user{
+                            position:  absolute;
+                            left: 6px;
+                            bottom: -8px;
+                          }
+                          .blog-pv{
+                            position:  absolute;
+                            left: 8px;
+                            bottom: 14px;
+                          }
+                      }
+
+    </style>
+  </head>
+
+  <body>
+    <main>
+
+      <div class="sidebar1">
+        <div class="sidebar-area">
+        </div>
+      </div>
+
+      <!-- main-area -->
+      <div class="new-area">
+
+        <!--ジャンルエリア-->
+        <div class="main-area1">
+
+          <div class="genre-area">
+            <div class="genre">
+              <div class="genre-head">
+                <h3>Blog 一覧</h3>
+              </div>
+
+              <% @genres.each do |genre| %>
+                <%= link_to genre_path(genre.id) do %>
+                  <div class="genre-items">
+                    <%= genre.name %>  <%= genre.blogs.count %>件
+                  </div>
+                <% end %>
+              <% end %>
+
+            </div>
+          </div>
+
+        </div>
+
+        <div class="main-area2">
+          <!--blog-->
+          <div class="top-header">
+            <h1><%= @genre.name %></h1><strong>全<%= @blogs.count %>件</strong>
+          </div>
+
+          <hr class="hr1">
+
+          <% @blogs.each do |blog| %>
+
+            <div class="blog-area">
+              <div class="blog">
+                <%= link_to blog_path(blog.id) do %>
+                  <div class="blog-head">
+
+                    <!--タイトル-->
+                    <div class="blog-title">
+                      <h2><%= blog.title %></h2>
+                    </div>
+
+                    <!--投稿日-->
+                    <div class="blog-time">
+                      <strong>投稿日:</strong><%= blog.created_at.strftime('%Y/%m/%d') %>
+                    </div>
+
+                    <!--閲覧数-->
+                    <div class="blog-pv">
+                      <strong>閲覧数 : </strong><%= blog.impressionist_count %>
+                    </div>
+
+                    <!--ジャンル-->
+                    <div class="blog-genre">
+                      <% if blog.genre.present? %>
+                        <strong>ジャンル: </strong><%= blog.genre.name %>
+                      <% end %>
+                    </div>
+
+                    <!-- 投稿者 -->
+                    <div class="blog-user">
+                      <% if blog&.user&.mark %>
+                        <strong>✅管理者:</strong><%= blog.user.name %>
+                      <% else %>
+                        <strong>投稿者: </strong><%= blog.user.name %>
+                      <% end %>
+                    </div>
+
+                  </div>
+
+                  <hr class="hr1">
+
+                  <!--コンテンツ-->
+                  <div class="blog-content">
+                    <%= blog.content %>
+                  </div>
+
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+
+      </div>
+
+      <!--sidebar-->
+      <div class="sidebar2">
+        <div class="sidebar-area">
+        </div>
+      </div>
+
+    </main>
+  </body>
+</html>
+

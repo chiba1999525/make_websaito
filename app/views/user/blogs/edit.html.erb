@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF=8"/>
+    <title></title>
+
+    <!--top css-->
+    <style>
+      .top-header h1 {
+        color: black;
+        text-align:center;
+        background-color:white;
+      }
+
+      .hr1{
+        width:60%;
+      }
+
+        main {
+          display:flex;
+          width: 100%;
+        }
+          .new {
+            margin: 13px 254px 0px 328px;
+            background-color: white;
+            width:61%;
+          }
+              .new-area {
+                margin: 20px;
+                border: solid;
+                border-color: black;
+                /*角を丸くする*/
+                border-radius:10px;
+              }
+                /*入力フォーム*/
+                input{
+                  width: 325px;
+                  height: 50px
+                }
+                .new-item {
+                  margin: 25px;
+                }
+                .new-button {
+                  margin: 20px 20px;
+                }
+        @media screen and (max-width:599px) {
+          .new {
+            margin: 0px 0px;
+              background-color: white;
+              width: 78%;
+          }
+          .new-area {
+              margin: 15px;
+              border: solid;
+              border-color: black;
+              border-radius: 10px;
+              width: 89%;
+              height: 89%;
+          }
+            input {
+                width: 89%;
+                height: 43px;
+                margin: 2px 11px;
+            }
+            .user {
+                position: absolute;
+                left: 7px;
+                top: 1px;
+            }
+            .button1 {
+                position: absolute;
+                bottom: 20px;
+                right: 99px;
+            }
+            .button2 {
+                  position: absolute;
+                  bottom: 20px;
+                  right: 20px;
+              }
+        }
+
+
+    </style>
+  </head>
+
+  <body>
+    <main>
+
+      <div class="sidebar1">
+        <div class="sidebar-area">
+        </div>
+      </div>
+
+      <!-- main-area -->
+      <div class="new">
+
+        <!--エラーメッセージ-->
+        <% if @blog.errors.any? %>
+          <div id="error_explanation" class="alert alert-danger">
+            <ul>
+              <% @blog.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <!--入力エリア-->
+        <div class="new-area">
+
+          <!--入力top-->
+          <div class="top-header">
+            <h1>Blog 編集</h1>
+          </div>
+
+          <hr class="hr1">
+
+          <%= form_with model: @blog, url: user_blog_path, local: true do |form| %>
+
+            <!--入力フォーム-->
+            <div class="new-text">
+              <div>
+                <label class="new-item">
+                  <strong>タイトル(25文字以内)</strong>:
+                  <%= form.text_field :title %>
+                </label>
+              </div>
+
+              <div>
+                <label class="new-item">
+                  <strong>ジャンル</strong>:
+                  <%= form.collection_select :genre_id, Genre.all, :id, :name, :include_blank => true  %>
+                </label>
+              </div>
+
+              <div>
+                <label class="new-item">
+                  <div><strong>記事</strong>（画像も一緒に挿入できます）</div>
+                  <%= form.rich_text_area :content %>
+                </label>
+              </div>
+            </div>
+
+            <div class="new-button">
+              <%= form.submit "投稿編集" %>
+            </div>
+
+          <% end %>
+        </div>
+
+      </div>
+      <!--sidebar-->
+      <div class="sidebar2">
+        <div class="sidebar-area">
+        </div>
+      </div>
+
+    </main>
+  </body>
+</html>
+
+
+

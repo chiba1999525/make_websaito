@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF=8"/>
+    <title></title>
+
+    <!--top css-->
+    <style>
+      .top-header h1 {
+        color: black;
+        text-align:center;
+        background-color:white;
+      }
+
+      .hr1{
+        width:60%;
+      }
+
+        main {
+          display:flex;
+          width: 100%;
+          background-color:white;
+        }
+          .new {
+            margin: 30px 230px 0px 347px;
+            background-color: white;
+            width:61%;
+          }
+            .text_area {
+              height:500px;
+            }
+
+            .new-area {
+              margin:20px;
+              background-color: white;
+              text-align:center
+            }
+              input{
+                width: 325px;
+                height: 50px
+              }
+              .new-item, .link, .new-button {
+                background-color:white;
+                margin: 25px 10px 0px 20px;;
+              }
+
+          .sidebar{
+            width:20%;
+          }
+            .sidebar-area{
+              margin:20px;
+              background-color:white;
+            }
+
+            @media (max-width: 599px){
+            .main-area {
+                border-radius: 10px;
+                margin: 0px;
+                background-color: white;
+                display: flex;
+                width: 70%;
+            }
+              .new-area {
+                  width: 100%;
+                  margin: 0px;
+                  background-color: white;
+                  text-align: center;
+              }
+              input {
+                width: 93%;
+                height: 58px;
+              }
+              .sidebar2 {
+                  width: 27%;
+                  height: 575px;
+                  position: fixed;
+                  top: 86px;
+                  right: 3%;
+              }
+              .sidebar2 >.sidebar-area {
+                  margin: 1px;
+                  background-color: white;
+              }
+          }
+
+    </style>
+  </head>
+
+  <body>
+    <main>
+
+      <div class="sidebar1">
+        <div class="sidebar-area">
+        </div>
+      </div>
+      <!-- main-area -->
+      <div class="main-area">
+        <!--blog-->
+        <div class="new-area">
+
+
+          <div class="top-header">
+            <h1>ユーザー 新規登録</h1>
+          </div>
+
+          <hr class="hr1">
+
+          <div class="item-area">
+            <%= form_with model: @user,  url: user_registration_path, local: true do |f| %>
+              <%= render "devise/shared/error_messages", resource: resource %>
+
+              <div class="new-item">
+                <label>
+                  <div>ニックネーム</div>
+                  <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
+                </label>
+              </div>
+
+              <div class="new-item">
+                <label>
+                  <div>メールアドレス</div>
+                  <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+                </label>
+              </div>
+
+              <div class="new-item">
+                <label>
+                  <div>パスワード（６文字以上）</div>
+                  <%= f.password_field :password, autocomplete: "new-password" %>
+                </label>
+              </div>
+
+              <div class="new-item">
+                <label>
+                  <div>パスワード（再確認）</div>
+                  <%= f.password_field :password, autocomplete: "current-password" %>
+                </label>
+              </div>
+
+              <div class="new-button">
+                <%= f.submit "新規登録" %>
+              </div>
+
+            <% end %>
+            <div class="link">
+              登録済みの方は<strong><%= link_to "こちら", new_user_session_path %></strong> へ
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!--sidebar-->
+      <div class="sidebar2">
+        <div class="sidebar-area">
+        </div>
+      </div>
+
+    </main>
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
+

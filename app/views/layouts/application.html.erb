@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Make_WebSaito</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+
+    <!-- CSS デザイン -->
+
+    <!-- SNSアイコン -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <!-- google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500&display=swap" rel="stylesheet">
+
+  </head>
+
+  <body>
+    <header>
+
+      <div class="header-left">
+        <%= link_to root_path do %>
+          <h1>Make_WebSaito</h1>
+        <% end %>
+      </div>
+
+      <div class="nav">
+
+        <div class="sns">
+          <ul class="follow-me">
+            <li><a href="https://twitter.com/T_engineerweb"></a><li>
+            <li><a href="https://www.instagram.com/t_engineerweb/"></a></li>
+          </ul>
+        </div>
+
+        <div class="nav-area">
+          <!-- ハンバーガーメニュー部分 -->
+          <!-- ハンバーガーメニューの表示・非表示を切り替えるチェックボックス -->
+          <input id="drawer_input" class="drawer_hidden" type="checkbox">
+          <!-- ハンバーガーアイコン -->
+          <label for="drawer_input" class="drawer_open"><span></span></label>
+
+          <!-- メニュー -->
+          <nav class="nav_content">
+            <ul class="nav_list">
+              <% if user_signed_in? %>
+                <!--ユーザー-->
+                <li class="nav_item">
+                  <label class=menu>
+                    <h3><%= link_to "Home",root_path, class: "menu-item" %></h3>
+                  </label>
+                </li>
+
+                <li class="nav_item">
+                  <label class=menu>
+                    <h3><%= link_to "マイページ", mypage_user_customer_path(current_user), class: "menu-item" %></h3>
+                  </label>
+                </li>
+                  
+                <li class="nav_item">
+                  <label class=menu>
+                    <h3><%= link_to "Blog 一覧", blogs_path, class: "menu-item" %></h3>
+                  </label>
+                </li>
+                  
+                <li class="nav_item">
+                  <label class=menu>
+                    <h3><%= link_to "Blgo 投稿",  new_user_blog_path, class: "menu-item" %></h3>
+                  </label>
+                </li>
+                  
+
+                <li class="nav_item">
+                  <label class=menu>
+                    <h3><%= link_to "問い合わせ",  new_inquiry_path, class: "menu-item" %></h3>
+                  </label>
+                </li>
+                  
+
+                <li class="nav_item">
+                  <label class=menu>
+                    <h3><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "menu-item" %></h3>
+                  </label>
+                </li>
+
+              <% elsif  admin_signed_in? %>
+                  <!--管理者-->
+                <li class="nav_item">
+                  <label class=menu>
+                    <h3><%= link_to "Home",root_path, class: "menu-item" %></h3>
+                  </label>
+                </li>
+                
+                <li class="nav_item">
+                  <label class=menu>
+                    <h3><%= link_to "問い合わせ 一覧", admin_inquiries_path, class: "menu-item" %></h3>
+                  </label>
+                </li>
+                  
+                <li class="nav_item">
+                  <label class=menu>
+                    <h3><%= link_to "Blog 一覧", blogs_path, class: "menu-item" %></h3>
+                  </label>
+                </li>
+                  
+                <li class="nav_item">
+                  <label class=menu>
+                    <h3><%= link_to "Genre 追加",  admin_genres_path, class: "menu-item" %></h3>
+                  </label>
+                </li>
+
+
+                <li class="nav_item">
+                  <label class=menu>
+                    <h3><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "menu-item" %></h3>
+                  </label>
+                </li>
+
+              <% else %>
+                <!--デフォルト-->
+                <li class="nav_item">
+                  <label class=menu>
+                    <h3><%= link_to "Home",root_path, class: "menu-item" %></h3>
+                  </label>
+                </li>
+                  
+                <li class="nav_item">
+                  <label class=menu>
+                    <h3><%= link_to "Blog 一覧", blogs_path, class: "menu-item" %></h3>
+                  </label>
+                </li>
+                  
+                <li class="nav_item">
+                  <label class=menu>
+                    <h3><%= link_to "Blog 投稿",  new_user_session_path, class: "menu-item" %></h3>
+                  </label>
+                </li>
+                  
+
+                <li class="nav_item">
+                  <label class=menu>
+                    <h3><%= link_to "問い合わせ",  new_inquiry_path, class: "menu-item" %></h3>
+                  </label>
+                </li>
+
+                <li class="nav_item">
+                  <label class=menu>
+                    <h3><%= link_to "ログイン",  new_user_session_path, class: "menu-item" %></h3>
+                  </label>
+                </li>
+
+              <% end %>
+
+            </ul>
+          </nav>
+
+        </div>
+      </nav>
+
+    </header>
+      <%= yield %>
+    <footer>
+
+    </footer>
+  </body>
+</html>
