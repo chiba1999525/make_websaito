@@ -1,0 +1,17 @@
+current directory: C:/Users/weben/Rails/make_webpage/vendor/bundle/ruby/3.0.0/gems/debug-1.8.0/ext/debug
+C:/Ruby30-x64/bin/ruby.exe -I C:/Ruby30-x64/lib/ruby/3.0.0 -r ./siteconf20230723-26360-lhtqcw.rb extconf.rb
+creating Makefile
+
+current directory: C:/Users/weben/Rails/make_webpage/vendor/bundle/ruby/3.0.0/gems/debug-1.8.0/ext/debug
+make DESTDIR\= clean
+
+current directory: C:/Users/weben/Rails/make_webpage/vendor/bundle/ruby/3.0.0/gems/debug-1.8.0/ext/debug
+make DESTDIR\=
+generating debug-x64-mingw32.def
+compiling debug.c
+compiling iseq_collector.c
+linking shared-object debug/debug.so
+
+current directory: C:/Users/weben/Rails/make_webpage/vendor/bundle/ruby/3.0.0/gems/debug-1.8.0/ext/debug
+make DESTDIR\= install
+/usr/bin/install -c -m 0755 debug.so ./.gem.20230723-26360-yybinx/debug
