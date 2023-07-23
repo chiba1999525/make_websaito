@@ -79,5 +79,8 @@ gem 'impressionist'
 #デプロイ
 gem 'capistrano-rails', group: :development
 
+gem 'mysql2'
+gem 'dotenv-rails'
+
 #ファイル最下部に記載する
 gem 'devise'
